@@ -15,7 +15,8 @@ def index(request):
 
 def product(request, product_id: int):
     product = get_object_or_404(Product, id=product_id)
-    return render(request, 'product.html', {'product': product})
+    specs = Specification.objects.get_specs_key_value(product_id)
+    return render(request, 'product.html', {'product': product, 'specifications': specs})
 
 
 def store(request):

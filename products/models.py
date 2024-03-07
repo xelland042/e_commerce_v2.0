@@ -2,6 +2,8 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth import get_user_model
 
+from products.managers import SpecificationManager
+
 User = get_user_model()
 
 
@@ -53,6 +55,8 @@ class Specification(BaseModel):
     quantity = models.BigIntegerField(default=0)
     price = models.DecimalField(max_digits=12, decimal_places=3)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='specifications')
+
+    objects = SpecificationManager()
 
     class Meta:
         ordering = ['price']

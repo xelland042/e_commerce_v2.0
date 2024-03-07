@@ -1,6 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block title %}
+{{product.name}}
+{% endblock %}
+
 {% block content %}
 <!-- SECTION -->
 <div class="section">
@@ -55,43 +59,24 @@
                     <p>{{product.about_product}}</p>
 
                     <div class="options">
+                        {% for specification in specifications %}
+                        {% for key, value in specification.items %}
                         <label>
-                            Size
+                            {{ key }}
                             <select class="input-select">
-                                <option value="0">X</option>
+                                {% for val in value %}
+                                <option value="{{val}}">{{val}}</option>
+                                {% endfor %}
                             </select>
                         </label>
-                        <label>
-                            Color
-                            <select class="input-select">
-                                <option value="0">Red</option>
-                            </select>
-                        </label>
-                        <label>
-                            Color
-                            <select class="input-select">
-                                <option value="0">Red</option>
-                            </select>
-                        </label>
-                        <label>
-                            Size
-                            <select class="input-select">
-                                <option value="0">Red</option>
-                            </select>
-                        </label>
-                        <label>
-                            Size
-                            <select class="input-select">
-                                <option value="0">Red</option>
-                            </select>
-                        </label>
+                        {% endfor %}
+                        {% endfor %}
                     </div>
-
 
 
                     <div class="add-to-cart">
                         <div class="qty-label">
-                            Qty
+                            Quantity
                             <div class="input-number">
                                 <input type="number">
                                 <span class="qty-up">+</span>
